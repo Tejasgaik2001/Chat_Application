@@ -7,7 +7,7 @@ import { ObjectId } from "mongoose";
 import { Socket } from "socket.io";
 const io = require("socket.io")(8080, {
   cors: {
-    origin: ["https://deploy-mern-luhq.vefcel.app"],
+    origin: ["*"],
     methods: ["POST", "GET"],
     credentials: true,
   },
