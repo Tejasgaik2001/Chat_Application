@@ -1,10 +1,19 @@
 {
   "version": 2,
-  "builds": [{ "src": "js", "use": "@vercel/node" }],
+  "builds": [{ "src": "server/**/*.js", "use": "@now/node-server" }],
   "routes": [
     {
+      "src": "/api/(.*)",
+      "dest": "/server/api/$1",
+      "methods": ["GET", "POST", "PUT", "DELETE"]
+    },
+    {
       "src": "/(.*)",
-      "dest": "/"
+      "dest": "/server/$1",
+      "methods": ["GET", "POST", "PUT", "DELETE"]
     }
-  ]
+  ],
+  "env": {
+    "MONGODB_URI": "@your-mongodb-uri"
+  }
 }
