@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-const mongoURL = process.env.MONGO_URL;
+const mongoURL =
+  "mongodb+srv://tejas10122001:KnTwUVcmSqesG2J0@chat-cluster.qpuj1uw.mongodb.net/?retryWrites=true&w=majority";
 
 if (!mongoURL) {
   console.error("MONGO_URL not defined in the environment variables.");
