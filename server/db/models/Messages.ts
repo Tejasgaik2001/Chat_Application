@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+const mongooseee = require("mongoose");
 
-const messagesSchema = mongoose.Schema({
+const messagesSchema = mongooseee.Schema({
   conversationId: {
     type: String,
   },
@@ -11,5 +11,5 @@ const messagesSchema = mongoose.Schema({
     type: String,
   },
 });
-const Messages = mongoose.model("Messages", messagesSchema);
+const Messages = mongooseee.model("Messages", messagesSchema);
 module.exports = Messages;

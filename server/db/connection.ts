@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoosee = require("mongoose");
 require("dotenv").config();
 
 const mongoURL =
@@ -9,7 +9,7 @@ if (!mongoURL) {
   process.exit(1); // Exit the process with an error code
 }
 
-mongoose
+mongoosee
   .connect(mongoURL, {})
   .then(() => {
     console.log("Connected to the database successfully");
