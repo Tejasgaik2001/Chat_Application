@@ -2,14 +2,12 @@ import express from "express";
 import cors from "cors";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-const mongoose = require("mongoose");
+
 import { ObjectId } from "mongoose";
 import { Socket } from "socket.io";
 const io = require("socket.io")(8080, {
   cors: {
-    origin: ["*"],
-    methods: ["POST", "GET"],
-    credentials: true,
+    origin: "http://localhost:3000",
   },
 });
 
@@ -71,7 +69,7 @@ app.get("/", (req, res) => {
 });
 // for registeration
 
-app.post("/signup", async (req, res, next) => {
+app.post("/api/signup", async (req, res, next) => {
   try {
     const { username, email, password } = req.body;
 
@@ -103,7 +101,7 @@ app.post("/signup", async (req, res, next) => {
 });
 
 // for login
-app.post("/login", async (req, res, next) => {
+app.post("/api/login", async (req, res, next) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) {
@@ -143,7 +141,7 @@ app.post("/login", async (req, res, next) => {
 });
 
 // for converstion
-app.post("/conversation", async (req, res, next) => {
+app.post("/api/conversation", async (req, res, next) => {
   try {
     const { senderId, reciverId } = req.body;
     const newConversation = new Conversation({
@@ -156,7 +154,7 @@ app.post("/conversation", async (req, res, next) => {
   }
 });
 //  for coversation past chat
-app.get("/conversation/:userId", async (req, res, next) => {
+app.get("/api/conversation/:userId", async (req, res, next) => {
   try {
     const userid = req.params.userId;
     const conversation = await Conversation.find({
@@ -193,7 +191,7 @@ app.get("/conversation/:userId", async (req, res, next) => {
     console.log(error);
   }
 });
-app.post("/message", async (req, res, next) => {
+app.post("/api/message", async (req, res, next) => {
   try {
     const { conversationId, senderId, message, reciverId = "" } = req.body;
     if (!senderId || !message)
@@ -228,7 +226,7 @@ app.post("/message", async (req, res, next) => {
   }
 });
 
-app.get("/message/:conversationId", async (req, res, next) => {
+app.get("/api/message/:conversationId", async (req, res, next) => {
   try {
     const conversationId = req.params.conversationId;
     if (conversationId === "new") {
@@ -265,7 +263,7 @@ app.get("/message/:conversationId", async (req, res, next) => {
   }
 });
 
-app.get("/users", async (req, res) => {
+app.get("/api/users", async (req, res) => {
   interface UserModel {
     _id: string;
     email: string;
@@ -292,7 +290,7 @@ app.get("/users", async (req, res) => {
   }
 });
 
-app.get("/checkuser/:currUser/:reciver", async (req, res) => {
+app.get("/api/checkuser/:currUser/:reciver", async (req, res) => {
   try {
     const currUser = req.params.currUser;
     const reciver = req.params.reciver;

@@ -23,7 +23,7 @@ const SignUp: React.FC = () => {
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     console.log(data);
     try {
-      const res = await fetch(`http://localhost:8000/signup`, {
+      const res = await fetch(`http://localhost:8000/api/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

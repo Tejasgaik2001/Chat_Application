@@ -91,7 +91,7 @@ function DashBoard() {
     const fetchConversation = async () => {
       const userId = parsedUser; // cureen user
       const res = await fetch(
-        `http://localhost:8000/conversation/${userId?._id}`,
+        `http://localhost:8000/api/conversation/${userId?._id}`,
         {
           method: "GET",
           headers: {
@@ -115,7 +115,7 @@ function DashBoard() {
   }, [user]);
   //for users list new people
   const fecthUsers = async () => {
-    const res = await fetch(`http://localhost:8000/users`, {
+    const res = await fetch(`http://localhost:8000/api/users`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -154,12 +154,15 @@ function DashBoard() {
     user: OppositeUserInFetch,
     conversationId: string
   ) => {
-    const res = await fetch(`http://localhost:8000/message/${conversationId}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await fetch(
+      `http://localhost:8000/api/message/${conversationId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const responData = await res.json();
 
     console.log("opposite user", user);
@@ -192,7 +195,7 @@ function DashBoard() {
       conversationId: messages.conversationId,
     });
 
-    const res = await fetch("http://localhost:8000/message", {
+    const res = await fetch("http://localhost:8000/api/message", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -207,12 +210,12 @@ function DashBoard() {
 
     setTypedMessage("");
   };
- // to check if it has coversation or not
+  // to check if it has coversation or not
   const checkuserhasConvo = async (user: OppositeUserInFetch) => {
     const reciver = user.reciverId;
     const currUser = parsedUser?._id;
     const res = await fetch(
-      `http://localhost:8000/checkuser/${currUser}/${reciver}`,
+      `http://localhost:8000/api/checkuser/${currUser}/${reciver}`,
       {
         method: "GET",
         headers: {
@@ -392,7 +395,7 @@ function DashBoard() {
               );
             })
           ) : (
-            <div className="text-center font-semibold">No covversation</div>
+            <div className="text-center font-semibold">No other user </div>
           )}
         </div>
       </div>
