@@ -366,9 +366,12 @@ function DashBoard() {
       </div>
 
       {/* right screen */}
-      <div className="w-[25%] h-screen bg-light px-8 py-16 overflow-scroll ">
+      <div className="w-[25%] h-screen bg-light px-8 py-16 ">
         <div className="text-[#1476ff] text-lg">People</div>
-        <div>
+        <div
+          className=" overflow-scroll"
+          style={{ height: "-webkit-fill-available" }}
+        >
           {users.length > 0 ? (
             users.map(({ user, userId }: UsersInFetch) => {
               return (
